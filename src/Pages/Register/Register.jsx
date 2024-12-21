@@ -4,31 +4,50 @@ import useAuth from "../../Hooks/useAuth";
 import RegistrationLottie from "../../assets/Lottie/RegistrationLottie.json";
 import Lottie from "lottie-react";
 import GoogleLogin from "../../Components/Google Login/GoogleLogin";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
+
 const Registration = () => {
   const navigate = useNavigate();
-  const { signInWithGoogle, createUser, updateUserProfile, setUser } =
-    useAuth();
+  const { user, setUser, createNewUser, updateUserProfile } = useAuth();
 
-  const handleSignUp = async (e) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const name = form.name.value;
     const photo = form.photo.value;
-    const pass = form.password.value;
-    console.log({ email, pass, name, photo });
-    try {
-      //2. User Registration
-      const result = await createUser(email, pass);
-      console.log(result);
-      await updateUserProfile(name, photo);
-      setUser({ ...result.user, photoURL: photo, displayName: name });
-      toast.success("Signup Successful");
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
+    const password = form.password.value;
+    console.log({ email, password, name, photo });
+
+    if (password.length < 6) {
+      setErrorMessage("password should be 6 characters");
+      return;
     }
+    const regularExp = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if (!regularExp.test(password)) {
+      setErrorMessage("must have uppercase & lowercase");
+      return;
+    }
+
+    createNewUser(email, password)
+      .then((result) => {
+        setUser(result?.user);
+        updateUserProfile({ displayName: name, photoURL: photo })
+          .then(() => {
+            toast.success("Registration Succcessful");
+            navigate("/");
+          })
+          .catch((error) => toast.error(error.code));
+      })
+      .catch((error) => {
+        toast.error("Email already use in another account", {
+          position: "top-right",
+        });
+      });
   };
 
   return (
@@ -94,17 +113,25 @@ const Registration = () => {
                 name="email"
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type="email"
+                required
               />
             </div>
 
             <div className="mt-4">
-              <div className="flex justify-between">
+              <div className="flex justify-between relative">
                 <label
                   className="block mb-2 text-sm font-medium text-gray-600 "
                   htmlFor="loggingPassword"
                 >
                   Password
                 </label>
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="text-lg absolute top-10 right-4"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
               </div>
 
               <input
@@ -112,15 +139,19 @@ const Registration = () => {
                 autoComplete="current-password"
                 name="password"
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                type="password"
+                type={showPassword ? "text" : "password"}
+                required
               />
+              {errorMessage && (
+                <p className="mt-2 text-red-400 font-bold">{errorMessage}</p>
+              )}
             </div>
             <div className="mt-6">
               <button
                 type="submit"
-                className="btn btn-accent w-full text-white"
+                className="btn btn-accent text-lg w-full text-white"
               >
-                Sign Up
+                Register
               </button>
             </div>
           </form>

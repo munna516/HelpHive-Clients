@@ -13,9 +13,7 @@ const GoogleLogin = () => {
   const handleGoogleSignIn = () => {
     googleSignIn(googleProvider)
       .then((result) => {
-        toast.success("Successfully login with Google", {
-          position: "top-center",
-        });
+        toast.success("Successfully login with Google");
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
