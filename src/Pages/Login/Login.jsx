@@ -1,56 +1,24 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/Lottie/LoginLottie.json";
-import useAuth from "../../Hooks/useAuth";
-import { FcGoogle } from "react-icons/fc";
-import toast from "react-hot-toast";
-import { GoogleAuthProvider } from "firebase/auth";
+import GoogleLogin from "../../Components/Google Login/GoogleLogin";
+
 
 const Login = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location?.state || "/";
-  console.log(from);
-  const { googleSignIn } = useAuth();
-  const googleProvider = new GoogleAuthProvider();
-  const handleGoogleSignIn = () => {
-    googleSignIn(googleProvider)
-      .then((result) => {
-        toast.success("Successfully login with Google", {
-          position: "top-center",
-        });
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        toast.error("Something went wrong !!");
-      });
-  };
-
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      <div className="lg:flex  w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl ">
+      <div className="md:flex  w-full  mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl ">
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-          <p className="mt-3 text-xl text-center text-gray-600 ">
+          <p className="mt-3 text-xl text-center font-bold text-gray-600 ">
             Welcome back !
           </p>
 
-          <div
-            onClick={handleGoogleSignIn}
-            className="flex cursor-pointer items-center justify-center mt-4 text-gray-600  border rounded-lg   hover:bg-gray-200 "
-          >
-            <div className="px-4 py-2 text-2xl">
-              <FcGoogle />
-            </div>
-
-            <span className="w-5/6 px-4 py-3 font-bold text-center">
-              Sign in with Google
-            </span>
-          </div>
+          <GoogleLogin></GoogleLogin>
 
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b  lg:w-1/4"></span>
 
-            <div className="text-xs text-center text-gray-500 uppercase  hover:underline">
+            <div className="text-xs text-center text-gray-500 uppercase">
               or login with email
             </div>
 
@@ -94,26 +62,23 @@ const Login = () => {
             <div className="mt-6">
               <button
                 type="submit"
-                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+                className="btn btn-accent text-white w-full"
               >
                 Sign In
               </button>
             </div>
           </form>
 
-          <div className="mt-4">
-            <Link
-              to="/register"
-              className="flex justify-between items-center text-base text-gray-500   "
-            >
-              <p>Don't have account? </p>
+          <div className="flex justify-between items-center mt-4">
+            <p className="text-gray-500">Don't have account? </p>
+            <Link to="/register">
               <p className="font-bold text-blue-500 hover:underline uppercase">
                 Register
               </p>
             </Link>
           </div>
         </div>
-        <div className="lg:w-1/2">
+        <div className="lg:w-1/2 flex justify-center items-center">
           <Lottie animationData={loginLottie}></Lottie>
         </div>
       </div>

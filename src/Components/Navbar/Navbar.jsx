@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
-
+import { FiLogOut } from "react-icons/fi";
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, userLogOut } = useAuth();
@@ -109,7 +109,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu text-lg bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
+                className="dropdown-content menu bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
               >
                 <li>
                   <a className="flex justify-center font-semibold">
@@ -119,9 +119,9 @@ const Navbar = () => {
                 <li>
                   <a
                     onClick={handleLogOut}
-                    className="flex justify-center font-semibold"
+                    className="flex justify-center gap-2 font-semibold"
                   >
-                    Logout
+                    Logout <FiLogOut />
                   </a>
                 </li>
               </ul>
@@ -137,7 +137,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu  bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
+                className="dropdown-content menu flex items-center bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
               >
                 <li>
                   <a className="font-semibold">Add Volunteer Need Post</a>
