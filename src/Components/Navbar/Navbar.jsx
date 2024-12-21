@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { user, userLogOut } = useAuth();
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -17,31 +21,41 @@ const Navbar = () => {
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
+  const handleLogOut = () => {
+    userLogOut()
+      .then(() => {
+        toast.success("Logout Successfull", {
+          position: "top-center",
+        });
+      })
+      .catch((error) => {
+        toast.error(error.code);
+      });
+
+    navigate("/");
+  };
+
   const links = (
     <>
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `text-xl font-bold items-center ${
+          `btn md:text-xl font-bold items-center ${
             isActive ? "btn btn-accent text-white" : ""
           }`
         }
       >
-        <li>
-          <a>Home</a>
-        </li>
+        <a>Home</a>
       </NavLink>
       <NavLink
         to="/all-volunteer-need-post"
         className={({ isActive }) =>
-          `text-xl font-bold items-center ${
+          `btn md:text-xl font-bold items-center ${
             isActive ? "btn btn-accent text-white" : ""
           }`
         }
       >
-        <li>
-          <a>All Volunteer Need Posts</a>
-        </li>
+        <a>All Volunteer Need Posts</a>
       </NavLink>
     </>
   );
@@ -67,20 +81,87 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 gap-3  rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
         </div>
-        <a className="text-4xl font-extrabold text-accent">HelpHive</a>
+        <Link to="/" className="text-xl md:text-4xl font-extrabold text-accent">
+          HelpHive
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal px-1 items-center gap-3">
+          {links}
+        </ul>
       </div>
       <div className="navbar-end gap-3">
-        <Link to="/login">
-          <button className="btn btn-accent text-xl text-white">Login</button>
-        </Link>
+        {user && user?.email ? (
+          <div className="flex justify-center items-center gap-3">
+            {/* image  */}
+            <div className="dropdown dropdown-end  dropdown-hover">
+              <div tabIndex={0} className="border rounded-full ">
+                <img
+                  className="w-14 rounded-full p-1"
+                  src={user?.photoURL}
+                  alt=""
+                />
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu text-lg bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
+              >
+                <li>
+                  <a className="flex justify-center font-semibold">
+                    {user?.displayName}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onClick={handleLogOut}
+                    className="flex justify-center font-semibold"
+                  >
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
+            {/* My Profile */}
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-accent text-white text-xl m-1"
+              >
+                My Profile
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu  bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
+              >
+                <li>
+                  <a className="font-semibold">Add Volunteer Need Post</a>
+                </li>
+                <li>
+                  <a className="font-semibold">Manage My Posts</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <NavLink
+            className={({ isActive }) =>
+              `btn md:text-xl font-bold items-center ${
+                isActive ? " btn-accent text-white" : ""
+              }`
+            }
+            to="/login"
+          >
+            <button>Login</button>
+          </NavLink>
+        )}
+
+        {/* Theme dark and light */}
         <label className="swap swap-rotate">
           <input
             onChange={handleTheme}

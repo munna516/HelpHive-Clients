@@ -15,7 +15,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const googleProvider = new GoogleAuthProvider();
+ 
   // Google Sign In
   const googleSignIn = (googleProvider) => {
     setLoading(true);
