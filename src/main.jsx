@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 import AuthProvider from "./Provider/AuthProvider";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <StrictMode >
     <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
       <Toaster position="top-right" reverseOrder={false}></Toaster>
