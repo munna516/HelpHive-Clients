@@ -97,10 +97,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-3">
         {user && user?.email ? (
-          <div className="flex justify-center items-center gap-3">
+          <div className="flex justify-center items-center z-10 gap-3">
             {/* image  */}
-            <div className="dropdown dropdown-end  dropdown-hover">
-              <div tabIndex={0} className="border rounded-full ">
+            <div className="dropdown dropdown-end dropdown-hover">
+              <div tabIndex={0} className="border border-accent rounded-full ">
                 <img
                   className="w-14 rounded-full p-1"
                   src={user?.photoURL}
@@ -140,7 +140,10 @@ const Navbar = () => {
                 className="dropdown-content menu flex items-center bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
               >
                 <li>
-                  <a className="font-semibold">Add Volunteer Need Post</a>
+                  <Link to="/add-volunteer-need-post" className="font-semibold">
+                    Add Volunteer Need Post
+                  </Link>
+                  
                 </li>
                 <li>
                   <a className="font-semibold">Manage My Posts</a>
