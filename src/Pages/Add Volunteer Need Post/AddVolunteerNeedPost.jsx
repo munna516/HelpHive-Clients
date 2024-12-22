@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 const AddVolunteerNeedPost = () => {
   const { user } = useAuth();
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState(Date.now());
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;

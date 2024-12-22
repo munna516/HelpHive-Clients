@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
 const Card = ({ post }) => {
-  const { thumbnail, title, description, deadline, numberOfVolunteer } = post;
+  const { _id, thumbnail, title, description, deadline, numberOfVolunteer } =
+    post;
   return (
     <>
       <div
@@ -35,7 +36,7 @@ const Card = ({ post }) => {
             </div>
           </div>
           <div className="card-actions justify-end mt-5">
-            <Link>
+            <Link to={`/volunteer-post/${_id}`}>
               <button className="btn btn-accent text-white">
                 View Details
               </button>

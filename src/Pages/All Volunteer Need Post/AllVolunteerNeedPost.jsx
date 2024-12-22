@@ -13,7 +13,7 @@ const AllVolunteerNeedPost = () => {
     axios.get("http://localhost:5000/all-volunteer-need-post").then((res) => {
       setVolunteerNeedPost(res.data);
     });
-  }, []);
+  }, [tableFormat]);
   return (
     <>
       <Helmet>
@@ -40,11 +40,17 @@ const AllVolunteerNeedPost = () => {
             </svg>
           </label>
         </div>
-        <div className="flex justify-center items-center gap-5 text-3xl text-accent">
-          <p onClick={() => setTableFormat(false)} className="cursor-pointer">
+        <div className="flex justify-center items-center gap-5 text-3xl ">
+          <p
+            onClick={() => setTableFormat(false)}
+            className={`cursor-pointer ${tableFormat ? "" : "text-accent"}`}
+          >
             <CgMenuGridO />
           </p>
-          <p onClick={() => setTableFormat(true)} className="cursor-pointer">
+          <p
+            onClick={() => setTableFormat(true)}
+            className={`cursor-pointer ${tableFormat ? "text-accent" : ""}`}
+          >
             <MdTableRows />
           </p>
         </div>
