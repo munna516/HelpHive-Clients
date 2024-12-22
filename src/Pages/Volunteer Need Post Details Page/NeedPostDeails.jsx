@@ -96,12 +96,12 @@ const NeedPostDeails = () => {
 
             <div className=" flex justify-center items-center gap-5">
               <Link
-                onClick={() => navigate(-1)}
+                onClick={() => navigate("/all-volunteer-need-post")}
                 className="btn btn-accent text-white"
               >
                 Back
               </Link>
-              <Link className="btn btn-accent text-white text-lg">
+              <Link to={`/volunteer-request/${id}`} className="btn btn-accent text-white text-lg">
                 Be a Volunteer
               </Link>
             </div>

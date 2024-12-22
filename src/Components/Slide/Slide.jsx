@@ -15,7 +15,10 @@ const Slide = ({ image, text }) => {
             {text}
           </h1>
           <br />
-          <Link  className="btn btn-accent text-white text-lg">
+          <Link
+            to="/all-volunteer-need-post"
+            className="btn btn-accent text-white text-lg"
+          >
             Be a Volunteer
           </Link>
         </div>

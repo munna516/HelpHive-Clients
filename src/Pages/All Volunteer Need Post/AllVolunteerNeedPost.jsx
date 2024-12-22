@@ -13,7 +13,7 @@ const AllVolunteerNeedPost = () => {
     axios.get("http://localhost:5000/all-volunteer-need-post").then((res) => {
       setVolunteerNeedPost(res.data);
     });
-  }, [tableFormat]);
+  }, []);
   return (
     <>
       <Helmet>
