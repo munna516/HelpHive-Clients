@@ -44,11 +44,12 @@ const AddVolunteerNeedPost = () => {
         if (res.data.acknowledged) {
           Swal.fire({
             icon: "success",
-            title: "Volunteer Need Post Added",
+            title: "Post Added",
             showConfirmButton: false,
             timer: 1500,
           });
-          form.reset()
+          form.reset();
+          setStartDate("");
         }
       });
   };

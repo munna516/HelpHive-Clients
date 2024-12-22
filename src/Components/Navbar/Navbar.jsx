@@ -86,7 +86,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <Link to="/" className="text-xl md:text-4xl font-extrabold text-accent">
+        <Link to="/" className="text-xl md:text-5xl font-extrabold text-accent">
           HelpHive
         </Link>
       </div>
