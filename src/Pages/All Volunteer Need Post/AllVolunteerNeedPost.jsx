@@ -9,11 +9,14 @@ import TableFormat from "../../Components/Table Format/TableFormat";
 const AllVolunteerNeedPost = () => {
   const [volunteerNeedPost, setVolunteerNeedPost] = useState([]);
   const [tableFormat, setTableFormat] = useState(false);
+  const [search, setSearch] = useState("");
   useEffect(() => {
-    axios.get("http://localhost:5000/all-volunteer-need-post").then((res) => {
-      setVolunteerNeedPost(res.data);
-    });
-  }, []);
+    axios
+      .get(`http://localhost:5000/all-volunteer-need-post?search=${search}`)
+      .then((res) => {
+        setVolunteerNeedPost(res.data);
+      });
+  }, [search]);
   return (
     <>
       <Helmet>
@@ -25,7 +28,14 @@ const AllVolunteerNeedPost = () => {
         </h1>
         <div>
           <label className="input input-bordered flex items-center gap-2">
-            <input type="text" className="grow" placeholder="Search" />
+            <input
+              onChange={(e) => setSearch(e.target.value)}
+              type="text"
+              name="search"
+              value={search}
+              className="grow"
+              placeholder="Search"
+            />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
