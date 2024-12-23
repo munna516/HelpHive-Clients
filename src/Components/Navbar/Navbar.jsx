@@ -146,7 +146,9 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <a className="font-semibold">Manage My Posts</a>
+                  <Link to="/manage-my-post" className="font-semibold">
+                    Manage My Post
+                  </Link>
                 </li>
               </ul>
             </div>
