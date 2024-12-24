@@ -3,12 +3,12 @@ import { Helmet } from "react-helmet";
 import useAuth from "../../Hooks/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddVolunteerNeedPost = () => {
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const { user } = useAuth();
   const [startDate, setStartDate] = useState(Date.now());
@@ -39,8 +39,8 @@ const AddVolunteerNeedPost = () => {
       deadline,
       description,
     };
-    axios
-      .post("http://localhost:5000/volunteer-need-post", volunteerNeedPost)
+    axiosSecure
+      .post("/volunteer-need-post", volunteerNeedPost)
       .then((res) => {
         if (res.data.acknowledged) {
           Swal.fire({

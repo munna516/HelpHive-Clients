@@ -8,9 +8,11 @@ import { TiCancel } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import NoData from "../../Components/No Data/NoData";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ManageMyPost = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [toogle, setToggle] = useState(true);
   const [activeTab, setActiveTab] = useState("Tab1");
   const [myPost, setMyPost] = useState([]);
@@ -21,12 +23,14 @@ const ManageMyPost = () => {
   };
   useEffect(() => {
     if (activeTab == "Tab1") {
-      axios.get(`http://localhost:5000/my-post/${user?.email}`).then((res) => {
-        setMyPost(res.data);
-      });
+      axiosSecure
+        .get(`/my-post?email=${user?.email}`)
+        .then((res) => {
+          setMyPost(res?.data);
+        });
     } else if (activeTab == "Tab2") {
-      axios
-        .get(`http://localhost:5000/my-request/${user?.email}`)
+      axiosSecure
+        .get(`/my-request?email=${user?.email}`)
         .then((res) => {
           setMyReq(res.data);
         });
@@ -44,7 +48,7 @@ const ManageMyPost = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/delete-post/${id}`).then((res) => {
+        axiosSecure.delete(`/delete-post/${id}`).then((res) => {
           if (res.data.acknowledged) {
             Swal.fire({
               title: "Deleted!",
@@ -70,8 +74,8 @@ const ManageMyPost = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`http://localhost:5000/cancle-request/${id}`)
+        axiosSecure
+          .delete(`/cancle-request/${id}`)
           .then((res) => {
             if (res.data.acknowledged) {
               Swal.fire({

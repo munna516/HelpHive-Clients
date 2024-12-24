@@ -6,12 +6,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const UpdatePost = () => {
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/volunteer-post/${id}`)
+    axiosSecure
+      .get(`/volunteer-post/${id}`)
       .then((res) => setPost(res.data));
   }, []);
   const [post, setPost] = useState({});
@@ -25,9 +27,8 @@ const UpdatePost = () => {
     updatePost.deadline = post?.deadline;
     updatePost.numberOfVolunteer = parseInt(numberOfVolunteer);
     updatePost.organizer = { email, name };
-    console.log(updatePost);
-    axios
-      .put(`http://localhost:5000/update-post/${id}`, updatePost)
+    axiosSecure
+      .put(`/update-post/${id}`, updatePost)
       .then((res) => {
         if (res.data.acknowledged) {
           Swal.fire({

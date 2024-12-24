@@ -1,4 +1,3 @@
-import axios from "axios";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -8,9 +7,12 @@ import { BiCategory } from "react-icons/bi";
 import { IoMdTime } from "react-icons/io";
 import { MdGroups } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const NeedPostDeails = () => {
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [post, setPost] = useState({});
   const {
@@ -24,11 +26,17 @@ const NeedPostDeails = () => {
     organizer,
   } = post;
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/volunteer-post/${id}`)
-      .then((res) => setPost(res.data));
+  useEffect(() => { 
+    axiosSecure.get(`/volunteer-post/${id}`).then((res) => setPost(res.data));
   }, []);
+  const handleNumOfVolunteer = () => {
+    toast.error(
+      "Thank you for your interest! Unfortunately, this opportunity has already reached its volunteer limit\n\n Please explore other available opportunities to make a difference!",
+      {
+        duration: 6000,
+      }
+    );
+  };
   return (
     <>
       <Helmet>
@@ -101,9 +109,21 @@ const NeedPostDeails = () => {
               >
                 Back
               </Link>
-              <Link to={`/volunteer-request/${id}`} className="btn btn-accent text-white text-lg">
-                Be a Volunteer
-              </Link>
+              {numberOfVolunteer === 0 ? (
+                <Link
+                  onClick={handleNumOfVolunteer}
+                  className="btn btn-accent text-white text-lg"
+                >
+                  Be a Volunteer
+                </Link>
+              ) : (
+                <Link
+                  to={`/volunteer-request/${id}`}
+                  className="btn btn-accent text-white text-lg"
+                >
+                  Be a Volunteer
+                </Link>
+              )}
             </div>
           </div>
         </div>

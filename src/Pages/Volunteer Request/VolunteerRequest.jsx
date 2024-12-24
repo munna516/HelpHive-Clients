@@ -1,12 +1,13 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const VolunteerRequest = () => {
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const { id } = useParams();
   const { user } = useAuth();
@@ -22,8 +23,8 @@ const VolunteerRequest = () => {
     organizer,
   } = post;
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/volunteer-post/${id}`)
+    axiosSecure
+      .get(`/volunteer-post/${id}`)
       .then((res) => setPost(res.data));
   }, []);
   const handleSubmit = (e) => {
