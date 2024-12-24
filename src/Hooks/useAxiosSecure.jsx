@@ -18,16 +18,16 @@ const useAxiosSecure = () => {
         return response;
       },
       (error) => {
-        if (error.status === 401 || error.status == 403) {
+        if (error.status === 401 || error.status === 403) {
           userLogOut()
             .then((res) => {
-              toast.error("Logout");
               navigate("/login");
             })
             .catch((err) => {
               toast.error(error.message);
             });
         }
+        return Promise.reject(error);
       }
     );
   }, []);
