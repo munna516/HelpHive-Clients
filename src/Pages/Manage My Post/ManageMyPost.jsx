@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { TiCancel } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const ManageMyPost = () => {
   const { user } = useAuth();
@@ -75,9 +76,13 @@ const ManageMyPost = () => {
                     <td>{post.location}</td>
                     <td className="flex  items-center gap-5 text-xl ">
                       {" "}
-                      <span className="text-blue-500 cursor-pointer">
+                      <Link
+                        to={`/update-post/${post._id}`}
+                       
+                        className="text-blue-500 cursor-pointer"
+                      >
                         <FaEdit />
-                      </span>{" "}
+                      </Link>{" "}
                       <span className="text-red-400 cursor-pointer">
                         <MdDelete />
                       </span>

@@ -67,7 +67,7 @@ const NeedPostDeails = () => {
                   <IoMdTime />
                   <span className="text-accent">
                     {" "}
-                    {format(new Date(deadline), "dd-MM-yyyy")}
+                    {format(new Date(deadline), "P")}
                   </span>
                 </h1>
               )}

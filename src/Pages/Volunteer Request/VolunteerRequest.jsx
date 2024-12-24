@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
 
 const VolunteerRequest = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { user } = useAuth();
   const [post, setPost] = useState({});
@@ -43,7 +44,6 @@ const VolunteerRequest = () => {
       name,
     };
     volunteerReq.deadline = deadline;
-    volunteerReq.numberOfVolunteer = parseInt(numberOfVolunteer - 1);
     volunteerReq.postId = id;
     volunteerReq.category = category;
     volunteerReq.volunteer = {
@@ -61,6 +61,7 @@ const VolunteerRequest = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate("/manage-my-post");
         }
       });
   };

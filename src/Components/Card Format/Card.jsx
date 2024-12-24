@@ -31,7 +31,7 @@ const Card = ({ post }) => {
             <div>
               Deadline :{" "}
               <span className="text-accent font-semibold">
-                {format(new Date(deadline), "dd-MM-yyyy")}
+                {format(new Date(deadline), "P")}
               </span>
             </div>
           </div>
