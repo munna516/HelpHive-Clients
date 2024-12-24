@@ -1,8 +1,11 @@
+import { PuffLoader } from "react-spinners";
 const Loading = () => {
   return (
-    <div className="flex min-h-screen justify-center ">
-      <span className="loading loading-bars loading-md"></span>
-      <span className="loading loading-bars loading-lg"></span>
+    <div className="flex items-center justify-center">
+      <div className="my-52">
+        <PuffLoader color="#00ecc6" size={120} />
+      </div>
+      <div></div>
     </div>
   );
 };

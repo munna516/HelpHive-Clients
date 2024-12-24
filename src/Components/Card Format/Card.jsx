@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
 const Card = ({ post }) => {
-  const { _id, thumbnail, title, description, deadline, numberOfVolunteer } =
+  const { _id, thumbnail, title, description, deadline,category } =
     post;
   return (
     <>
@@ -20,12 +20,12 @@ const Card = ({ post }) => {
         </figure>
         <div className="card-body ">
           <h2 className="card-title  font-bold">{title}</h2>
-          <p className="text-gray-400">{description.slice(0, 80)} . . .</p>
+          <p className="text-gray-400">{description.slice(0, 100)} . . .</p>
           <div className="flex justify-between text-lg ">
             <div>
-              Volunteer Need :{" "}
+              Category :{" "}
               <span className="text-accent font-semibold">
-                {numberOfVolunteer}
+                {category}
               </span>
             </div>
             <div>

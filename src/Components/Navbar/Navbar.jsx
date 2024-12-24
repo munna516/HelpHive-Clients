@@ -132,7 +132,7 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-accent text-white text-xl m-1"
+                className="btn btn-accent text-white md:text-xl m-1"
               >
                 My Profile
               </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "../../Components/Banner/Banner";
 import { Helmet } from "react-helmet";
+import VolunteerNeedsNow from "../../Components/Volunteer Needs Now/VolunteerNeedsNow";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       </Helmet>
       <div className="my-0">
         <Banner></Banner>
+        <VolunteerNeedsNow></VolunteerNeedsNow>
       </div>
     </>
   );

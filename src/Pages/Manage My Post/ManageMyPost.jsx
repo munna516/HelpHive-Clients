@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { TiCancel } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import NoData from "../../Components/No Data/NoData";
 
 const ManageMyPost = () => {
   const { user } = useAuth();
@@ -30,7 +31,7 @@ const ManageMyPost = () => {
           setMyReq(res.data);
         });
     }
-  }, [activeTab, myPost, myReq]);
+  }, [activeTab]);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -51,6 +52,8 @@ const ManageMyPost = () => {
               icon: "success",
             });
           }
+          const remain = myPost.filter((post) => post._id != id);
+          setMyPost(remain);
         });
       }
     });
@@ -76,6 +79,8 @@ const ManageMyPost = () => {
                 text: "Your post has been deleted.",
                 icon: "success",
               });
+              const remain = myReq.filter((post) => post._id != id);
+              setMyReq(remain);
             }
           });
       }
@@ -105,45 +110,49 @@ const ManageMyPost = () => {
           <h1 className="text-xl lg:text-4xl text-center mt-2 font-bold text-accent">
             My Volunteer Need Post ({myPost.length})
           </h1>
-          <div className="overflow-x-auto mt-7">
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr className="text-lg">
-                  <th></th>
-                  <th>Title</th>
-                  <th>Volunteer Need</th>
-                  <th>Location</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {myPost.map((post, index) => (
-                  <tr className="text-gray-400 font-semibold">
-                    <th>{index + 1}</th>
-                    <td>{post.title}</td>
-                    <td>{post.numberOfVolunteer}</td>
-                    <td>{post.location}</td>
-                    <td className="flex  items-center gap-5 text-xl ">
-                      {" "}
-                      <Link
-                        to={`/update-post/${post._id}`}
-                        className="text-blue-500 cursor-pointer"
-                      >
-                        <FaEdit />
-                      </Link>{" "}
-                      <Link
-                        onClick={() => handleDelete(post._id)}
-                        className="text-red-400 cursor-pointer"
-                      >
-                        <MdDelete />
-                      </Link>
-                    </td>
+          {myPost.length == 0 ? (
+            <NoData text={"No Volunteer Need Post is Found"}></NoData>
+          ) : (
+            <div className="overflow-x-auto mt-7">
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr className="text-lg">
+                    <th></th>
+                    <th>Title</th>
+                    <th>Volunteer Need</th>
+                    <th>Location</th>
+                    <th>Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {myPost.map((post, index) => (
+                    <tr className="text-gray-400 font-semibold">
+                      <th>{index + 1}</th>
+                      <td>{post.title}</td>
+                      <td>{post.numberOfVolunteer}</td>
+                      <td>{post.location}</td>
+                      <td className="flex  items-center gap-5 text-xl ">
+                        {" "}
+                        <Link
+                          to={`/update-post/${post._id}`}
+                          className="text-blue-500 cursor-pointer"
+                        >
+                          <FaEdit />
+                        </Link>{" "}
+                        <Link
+                          onClick={() => handleDelete(post._id)}
+                          className="text-red-400 cursor-pointer"
+                        >
+                          <MdDelete />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
 
         <input
@@ -163,40 +172,44 @@ const ManageMyPost = () => {
           <h1 className="text-xl lg:text-4xl text-center mt-2 font-bold text-accent">
             My Volunteer Request ({myReq.length})
           </h1>
-          <div className="overflow-x-auto mt-7">
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr className="text-lg">
-                  <th></th>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Organizer</th>
-                  <th>Location</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {myReq.map((Req, index) => (
-                  <tr key={Req._id} className="text-gray-400 font-semibold">
-                    <th>{index + 1}</th>
-                    <td>{Req.title}</td>
-                    <td>{Req.description.slice(0, 50)} . . .</td>
-                    <td>{Req.organizer.name}</td>
-                    <td>{Req.location}</td>
-                    <td className="text-2xl text-red-400 ">
-                      <span
-                        onClick={() => handleCancle(Req._id)}
-                        className="cursor-pointer"
-                      >
-                        <TiCancel />
-                      </span>
-                    </td>
+          {myReq.length == 0 ? (
+            <NoData text={"No Request is Found"}></NoData>
+          ) : (
+            <div className="overflow-x-auto mt-7">
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr className="text-lg">
+                    <th></th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Organizer</th>
+                    <th>Location</th>
+                    <th>Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {myReq.map((Req, index) => (
+                    <tr key={Req._id} className="text-gray-400 font-semibold">
+                      <th>{index + 1}</th>
+                      <td>{Req.title}</td>
+                      <td>{Req.description.slice(0, 50)} . . .</td>
+                      <td>{Req.organizer.name}</td>
+                      <td>{Req.location}</td>
+                      <td className="text-2xl text-red-400 ">
+                        <span
+                          onClick={() => handleCancle(Req._id)}
+                          className="cursor-pointer"
+                        >
+                          <TiCancel />
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
     </>

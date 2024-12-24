@@ -23,7 +23,7 @@ const AllVolunteerNeedPost = () => {
         <title>All Volunteer Need Post</title>
       </Helmet>
       <div className="flex justify-between items-center my-10">
-        <h1 className="text-4xl text-accent font-semibold">
+        <h1 className="text-xl lg:text-4xl text-accent font-semibold">
           Volunteer Need Post ({volunteerNeedPost?.length})
         </h1>
         <div>

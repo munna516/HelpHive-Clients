@@ -14,7 +14,7 @@ const TableFormat = ({ volunteerNeedPost }) => {
               <th>Title</th>
               <th>Description</th>
               <th>Deadline</th>
-              <th>Volunteer Need</th>
+              <th>Category</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -27,7 +27,7 @@ const TableFormat = ({ volunteerNeedPost }) => {
                   {post.description.slice(0, 25)}..
                 </td>
                 <td>{format(new Date(post.deadline), "dd-MM-yyyy")}</td>
-                <td className="font-bold">{post.numberOfVolunteer}</td>
+                <td className="font-bold">{post.category}</td>
                 <td>
                   <Link
                     to={`/volunteer-post/${post._id}`}
