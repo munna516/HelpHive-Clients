@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import useAuth from "../../Hooks/useAuth";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { TiCancel } from "react-icons/ti";
 
 const ManageMyPost = () => {
   const { user } = useAuth();
@@ -55,20 +58,30 @@ const ManageMyPost = () => {
             <table className="table">
               {/* head */}
               <thead>
-                <tr>
+                <tr className="text-lg">
                   <th></th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>Title</th>
+                  <th>Volunteer Need</th>
+                  <th>Location</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {myPost.map((post) => (
-                  <tr>
-                    <th>1</th>
-                    <td>Cy Ganderton</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Blue</td>
+                {myPost.map((post, index) => (
+                  <tr className="text-gray-400 font-semibold">
+                    <th>{index + 1}</th>
+                    <td>{post.title}</td>
+                    <td>{post.numberOfVolunteer}</td>
+                    <td>{post.location}</td>
+                    <td className="flex  items-center gap-5 text-xl ">
+                      {" "}
+                      <span className="text-blue-500 cursor-pointer">
+                        <FaEdit />
+                      </span>{" "}
+                      <span className="text-red-400 cursor-pointer">
+                        <MdDelete />
+                      </span>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -91,26 +104,34 @@ const ManageMyPost = () => {
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
         >
           <h1 className="text-xl lg:text-4xl text-center mt-2 font-bold text-accent">
-            My Volunteer Request Post ({myReq.length})
+            My Volunteer Request ({myReq.length})
           </h1>
           <div className="overflow-x-auto mt-7">
             <table className="table">
               {/* head */}
               <thead>
-                <tr>
+                <tr className="text-lg">
                   <th></th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Organizer</th>
+                  <th>Location</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {myReq.map((req) => (
-                  <tr>
-                    <th>1</th>
-                    <td>Cy Ganderton</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Blue</td>
+                {myReq.map((Req, index) => (
+                  <tr className="text-gray-400 font-semibold">
+                    <th>{index + 1}</th>
+                    <td>{Req.title}</td>
+                    <td>{Req.description.slice(0, 50)} . . .</td>
+                    <td>{Req.organizer.name}</td>
+                    <td>{Req.location}</td>
+                    <td className="text-2xl text-red-400 ">
+                      <span className="cursor-pointer">
+                        <TiCancel />
+                      </span>
+                    </td>
                   </tr>
                 ))}
               </tbody>
