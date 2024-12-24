@@ -39,7 +39,6 @@ const AddVolunteerNeedPost = () => {
       deadline,
       description,
     };
-    console.log(volunteerNeedPost);
     axios
       .post("http://localhost:5000/volunteer-need-post", volunteerNeedPost)
       .then((res) => {

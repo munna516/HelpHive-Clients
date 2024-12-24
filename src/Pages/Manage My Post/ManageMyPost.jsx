@@ -6,6 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { TiCancel } from "react-icons/ti";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManageMyPost = () => {
   const { user } = useAuth();
@@ -29,8 +30,57 @@ const ManageMyPost = () => {
           setMyReq(res.data);
         });
     }
-  }, [activeTab]);
-  console.log(myPost);
+  }, [activeTab, myPost, myReq]);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/delete-post/${id}`).then((res) => {
+          if (res.data.acknowledged) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your post has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const handleCancle = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:5000/cancle-request/${id}`)
+          .then((res) => {
+            if (res.data.acknowledged) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your post has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
   return (
     <>
       <Helmet>
@@ -78,14 +128,16 @@ const ManageMyPost = () => {
                       {" "}
                       <Link
                         to={`/update-post/${post._id}`}
-                       
                         className="text-blue-500 cursor-pointer"
                       >
                         <FaEdit />
                       </Link>{" "}
-                      <span className="text-red-400 cursor-pointer">
+                      <Link
+                        onClick={() => handleDelete(post._id)}
+                        className="text-red-400 cursor-pointer"
+                      >
                         <MdDelete />
-                      </span>
+                      </Link>
                     </td>
                   </tr>
                 ))}
@@ -126,14 +178,17 @@ const ManageMyPost = () => {
               </thead>
               <tbody>
                 {myReq.map((Req, index) => (
-                  <tr className="text-gray-400 font-semibold">
+                  <tr key={Req._id} className="text-gray-400 font-semibold">
                     <th>{index + 1}</th>
                     <td>{Req.title}</td>
                     <td>{Req.description.slice(0, 50)} . . .</td>
                     <td>{Req.organizer.name}</td>
                     <td>{Req.location}</td>
                     <td className="text-2xl text-red-400 ">
-                      <span className="cursor-pointer">
+                      <span
+                        onClick={() => handleCancle(Req._id)}
+                        className="cursor-pointer"
+                      >
                         <TiCancel />
                       </span>
                     </td>
