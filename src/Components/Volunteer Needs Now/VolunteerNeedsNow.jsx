@@ -16,7 +16,7 @@ const VolunteerNeedsNow = () => {
   return (
     <>
       <div>
-        <h1 className="text-4xl font-bold text-center text-accent my-10">
+        <h1 className="text-xl lg:text-4xl font-bold text-center text-accent my-10">
           <Typewriter
             words={["Volunteer Needs Now"]}
             loop={50}

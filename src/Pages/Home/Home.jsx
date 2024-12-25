@@ -3,6 +3,7 @@ import Banner from "../../Components/Banner/Banner";
 import { Helmet } from "react-helmet";
 import VolunteerNeedsNow from "../../Components/Volunteer Needs Now/VolunteerNeedsNow";
 import Event from "../../Components/Upcoming Event/Event";
+import VolunteerSpotlight from "../../Components/Volunteer Spotlight/VolunteerSpotlight";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
         <Banner></Banner>
         <VolunteerNeedsNow></VolunteerNeedsNow>
         <Event></Event>
+        <VolunteerSpotlight></VolunteerSpotlight>
       </div>
     </>
   );
