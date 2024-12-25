@@ -1,7 +1,7 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import Slide from "../Slide/Slide";
-
+import { motion } from "motion/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -15,7 +15,12 @@ import slider2 from "../../assets/Image/slider2.jpg";
 import slider3 from "../../assets/Image/slider3.jpg";
 const Banner = () => {
   return (
-    <div className="container px-6 py-10 mx-auto">
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 2 }}
+      className="container px-6 py-10 mx-auto"
+    >
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -50,7 +55,7 @@ const Banner = () => {
           />
         </SwiperSlide>
       </Swiper>
-    </div>
+    </motion.div>
   );
 };
 

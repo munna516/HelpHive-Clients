@@ -4,6 +4,7 @@ import Card from "../Card Format/Card";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
+import { motion } from "motion/react";
 
 const VolunteerNeedsNow = () => {
   const navigate = useNavigate();
@@ -28,11 +29,16 @@ const VolunteerNeedsNow = () => {
           />
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-5">
+        <motion.div
+          initial={{ opacity: 0, y: 200 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-5"
+        >
           {needNow.map((post) => (
             <Card key={post._id} post={post}></Card>
           ))}
-        </div>
+        </motion.div>
         <div className="flex justify-end my-8 mr-10">
           <button
             onClick={() => navigate("/all-volunteer-need-post")}

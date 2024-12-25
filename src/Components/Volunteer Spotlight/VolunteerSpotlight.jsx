@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
+import { motion } from "motion/react";
 
 const VolunteerSpotlight = () => {
   const navigate = useNavigate();
@@ -24,7 +25,13 @@ const VolunteerSpotlight = () => {
           delaySpeed={1000}
         />
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 200 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+
+        className="grid grid-cols-1 md:grid-cols-2  gap-6"
+      >
         {volunteers.map((volunteer, index) => (
           <div
             key={index}
@@ -48,10 +55,13 @@ const VolunteerSpotlight = () => {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
       <div className="text-center mt-3">
         <p className="text-lg font-medium">Want to be featured here?</p>
-        <button onClick={()=> navigate("/all-volunteer-need-post")} className="btn btn-accent text-white text-lg mt-3">
+        <button
+          onClick={() => navigate("/all-volunteer-need-post")}
+          className="btn btn-accent text-white text-lg mt-3"
+        >
           Start Volunteering Today
         </button>
       </div>

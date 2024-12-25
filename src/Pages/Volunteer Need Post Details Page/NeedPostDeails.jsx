@@ -9,7 +9,7 @@ import { MdGroups } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-
+import { motion } from "motion/react";
 const NeedPostDeails = () => {
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -57,7 +57,12 @@ const NeedPostDeails = () => {
           </h1>
         )}
 
-        <div className="card card-compact bg-base-100 border-2 mb-10 w-11/12 mx-auto shadow-xl">
+        <motion.div 
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 2 }}
+        
+        className="card card-compact bg-base-100 border-2 mb-10 w-11/12 mx-auto shadow-xl">
           <figure className="p-3">
             <img
               src={thumbnail}
@@ -126,7 +131,7 @@ const NeedPostDeails = () => {
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   );

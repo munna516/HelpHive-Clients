@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import NoData from "../../Components/No Data/NoData";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { motion } from "motion/react";
 
 const ManageMyPost = () => {
   const { user } = useAuth();
@@ -22,17 +23,13 @@ const ManageMyPost = () => {
   };
   useEffect(() => {
     if (activeTab == "Tab1") {
-      axiosSecure
-        .get(`/my-post?email=${user?.email}`)
-        .then((res) => {
-          setMyPost(res?.data);
-        });
+      axiosSecure.get(`/my-post?email=${user?.email}`).then((res) => {
+        setMyPost(res?.data);
+      });
     } else if (activeTab == "Tab2") {
-      axiosSecure
-        .get(`/my-request?email=${user?.email}`)
-        .then((res) => {
-          setMyReq(res.data);
-        });
+      axiosSecure.get(`/my-request?email=${user?.email}`).then((res) => {
+        setMyReq(res.data);
+      });
     }
   }, [activeTab]);
 
@@ -73,19 +70,17 @@ const ManageMyPost = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure
-          .delete(`/cancle-request/${id}`)
-          .then((res) => {
-            if (res.data.acknowledged) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your post has been deleted.",
-                icon: "success",
-              });
-              const remain = myReq.filter((post) => post._id != id);
-              setMyReq(remain);
-            }
-          });
+        axiosSecure.delete(`/cancle-request/${id}`).then((res) => {
+          if (res.data.acknowledged) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your post has been deleted.",
+              icon: "success",
+            });
+            const remain = myReq.filter((post) => post._id != id);
+            setMyReq(remain);
+          }
+        });
       }
     });
   };
@@ -116,7 +111,12 @@ const ManageMyPost = () => {
           {myPost.length == 0 ? (
             <NoData text={"No Volunteer Need Post is Found"}></NoData>
           ) : (
-            <div className="overflow-x-auto mt-7">
+            <motion.div
+              initial={{ opacity: 0, y: 200 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="overflow-x-auto mt-7"
+            >
               <table className="table">
                 {/* head */}
                 <thead>
@@ -154,7 +154,7 @@ const ManageMyPost = () => {
                   ))}
                 </tbody>
               </table>
-            </div>
+            </motion.div>
           )}
         </div>
 
@@ -178,7 +178,12 @@ const ManageMyPost = () => {
           {myReq.length == 0 ? (
             <NoData text={"No Request is Found"}></NoData>
           ) : (
-            <div className="overflow-x-auto mt-7">
+            <motion.div
+              initial={{ opacity: 0, y: 200 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="overflow-x-auto mt-7"
+            >
               <table className="table">
                 {/* head */}
                 <thead>
@@ -211,7 +216,7 @@ const ManageMyPost = () => {
                   ))}
                 </tbody>
               </table>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

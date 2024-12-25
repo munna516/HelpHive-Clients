@@ -7,6 +7,9 @@ const Card = ({ post }) => {
   return (
     <>
       <div
+       initial={{ opacity: 0, translateX: "100%" }}
+       whileInView={{ opacity: 1, translateX: 0 }}
+       transition={{ duration: 2 }}
         className="card card-compact bg-base-100 border shadow-xl transition hover:scale-105
        overflow-hidden"
       >

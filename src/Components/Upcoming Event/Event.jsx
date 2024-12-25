@@ -2,10 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import useAuth from "../../Hooks/useAuth";
-import { register } from "swiper/element";
 import toast from "react-hot-toast";
-import { button } from "motion/react-client";
 import { useNavigate } from "react-router-dom";
+import { motion } from "motion/react";
 
 const Event = () => {
   const { user } = useAuth();
@@ -46,7 +45,12 @@ const Event = () => {
           delaySpeed={1000}
         />
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 200 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
         {events.map((event) => (
           <div
             key={event.id}
@@ -87,7 +91,7 @@ const Event = () => {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
