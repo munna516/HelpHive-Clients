@@ -10,7 +10,7 @@ const VolunteerNeedsNow = () => {
   const navigate = useNavigate();
   const [needNow, SetNeedNow] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/volunteer-need-now").then((res) => {
+    axios.get("https://server-pi-drab.vercel.app/volunteer-need-now").then((res) => {
       SetNeedNow(res.data);
     });
   }, []);

@@ -26,7 +26,7 @@ const NeedPostDeails = () => {
     organizer,
   } = post;
 
-  useEffect(() => { 
+  useEffect(() => {
     axiosSecure.get(`/volunteer-post/${id}`).then((res) => setPost(res.data));
   }, []);
   const handleNumOfVolunteer = () => {
@@ -57,12 +57,12 @@ const NeedPostDeails = () => {
           </h1>
         )}
 
-        <motion.div 
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 2 }}
-        
-        className="card card-compact bg-base-100 border-2 mb-10 w-11/12 mx-auto shadow-xl">
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2 }}
+          className="card card-compact bg-base-100 border-2 mb-10 w-11/12 mx-auto shadow-xl"
+        >
           <figure className="p-3">
             <img
               src={thumbnail}
@@ -114,7 +114,7 @@ const NeedPostDeails = () => {
               >
                 Back
               </Link>
-              {numberOfVolunteer === 0 ? (
+              {numberOfVolunteer <= 0 ? (
                 <Link
                   onClick={handleNumOfVolunteer}
                   className="btn btn-accent text-white text-lg"

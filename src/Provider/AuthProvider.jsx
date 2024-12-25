@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser);
         axios
           .post(
-            "http://localhost:5000/jwt",
+            "https://server-pi-drab.vercel.app/jwt",
             {
               email: currentUser?.email,
             },
@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
       } else {
         setUser(currentUser);
         axios
-          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .post("https://server-pi-drab.vercel.app/logout", {}, { withCredentials: true })
           .then((res) => {
             setLoading(false);
           });

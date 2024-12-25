@@ -12,7 +12,7 @@ const Event = () => {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/upcoming-event")
+      .get("https://server-pi-drab.vercel.app/upcoming-event")
       .then((res) => setEvents(res.data));
   }, []);
   const handleRegister = (id) => {
@@ -21,7 +21,7 @@ const Event = () => {
       eventId: id,
     };
     axios
-      .post("http://localhost:5000/event-registration", registerEvent)
+      .post("https://server-pi-drab.vercel.app/event-registration", registerEvent)
       .then((res) => {
         // console.log(res.data);
         if (res?.data?.acknowledged) {

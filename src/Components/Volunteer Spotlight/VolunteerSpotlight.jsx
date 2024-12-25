@@ -8,7 +8,7 @@ const VolunteerSpotlight = () => {
   const navigate = useNavigate();
   const [volunteers, setVolunteers] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/volunteer-of-week").then((res) => {
+    axios.get("https://server-pi-drab.vercel.app/volunteer-of-week").then((res) => {
       setVolunteers(res.data);
     });
   }, []);
