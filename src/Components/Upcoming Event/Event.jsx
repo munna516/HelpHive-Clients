@@ -4,9 +4,12 @@ import { Typewriter } from "react-simple-typewriter";
 import useAuth from "../../Hooks/useAuth";
 import { register } from "swiper/element";
 import toast from "react-hot-toast";
+import { button } from "motion/react-client";
+import { useNavigate } from "react-router-dom";
 
 const Event = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
@@ -32,7 +35,7 @@ const Event = () => {
   };
   return (
     <div className=" my-10">
-      <h2 className="text-4xl font-bold text-center mb-8 text-accent">
+      <h2 className="text-xl lg:text-4xl font-bold text-center mb-8 text-accent">
         <Typewriter
           words={["Upcoming Events"]}
           loop={50}
@@ -47,7 +50,8 @@ const Event = () => {
         {events.map((event) => (
           <div
             key={event.id}
-            className="card bg-base-100 shadow-xl border border-gray-200 hover:shadow-2xl"
+            className="card bg-base-100 shadow-xl border border-gray-200 hover:shadow-xl transition hover:scale-105
+       overflow-hidden"
           >
             <div className="card-body">
               <figure>
@@ -64,12 +68,21 @@ const Event = () => {
               <p className="text-sm text-gray-500">{event.location}</p>
               <p className="mt-2 text-gray-700">{event.description}</p>
               <div className="card-actions mt-4">
-                <button
-                  onClick={() => handleRegister(event._id)}
-                  className="btn btn-accent w-full text-white"
-                >
-                  Register Now
-                </button>
+                {user && user?.email ? (
+                  <button
+                    onClick={() => handleRegister(event._id)}
+                    className="btn btn-accent w-full text-white"
+                  >
+                    Register Now
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-accent w-full text-white"
+                    onClick={() => navigate("/login")}
+                  >
+                    Register Now
+                  </button>
+                )}
               </div>
             </div>
           </div>

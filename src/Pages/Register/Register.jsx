@@ -80,6 +80,7 @@ const Registration = () => {
               <input
                 id="name"
                 autoComplete="name"
+                required
                 name="name"
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type="text"
@@ -95,6 +96,7 @@ const Registration = () => {
               <input
                 id="photo"
                 autoComplete="photo"
+                required
                 name="photo"
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type="text"
@@ -110,10 +112,10 @@ const Registration = () => {
               <input
                 id="LoggingEmailAddress"
                 autoComplete="email"
+                required
                 name="email"
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type="email"
-                required
               />
             </div>
 
@@ -138,9 +140,9 @@ const Registration = () => {
                 id="loggingPassword"
                 autoComplete="current-password"
                 name="password"
+                required
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type={showPassword ? "text" : "password"}
-                required
               />
               {errorMessage && (
                 <p className="mt-2 text-red-400 font-bold">{errorMessage}</p>
