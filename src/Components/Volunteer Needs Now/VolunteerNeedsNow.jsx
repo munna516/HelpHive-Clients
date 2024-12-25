@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "../Card Format/Card";
+import { FaArrowRight } from "react-icons/fa";
+import {  useNavigate } from "react-router-dom";
 
 const VolunteerNeedsNow = () => {
+  const navigate = useNavigate();
   const [needNow, SetNeedNow] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:5000/volunteer-need-now").then((res) => {
@@ -20,6 +23,14 @@ const VolunteerNeedsNow = () => {
           {needNow.map((post) => (
             <Card key={post._id} post={post}></Card>
           ))}
+        </div>
+        <div className="flex justify-end my-8 mr-10">
+          <button
+            onClick={() => navigate("/all-volunteer-need-post")}
+            className="flex items-center justify-end gap-2 text-red-500 font-bold text-lg"
+          >
+            See All <FaArrowRight />
+          </button>
         </div>
       </div>
     </>

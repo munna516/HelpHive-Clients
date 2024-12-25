@@ -23,9 +23,7 @@ const VolunteerRequest = () => {
     organizer,
   } = post;
   useEffect(() => {
-    axiosSecure
-      .get(`/volunteer-post/${id}`)
-      .then((res) => setPost(res.data));
+    axiosSecure.get(`/volunteer-post/${id}`).then((res) => setPost(res.data));
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,19 +50,17 @@ const VolunteerRequest = () => {
       volunteerName,
     };
     console.log(volunteerReq);
-    axios
-      .post("http://localhost:5000/volunteer-request", volunteerReq)
-      .then((res) => {
-        if (res.data.acknowledged) {
-          Swal.fire({
-            icon: "success",
-            title: "Request Successful",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/manage-my-post");
-        }
-      });
+    axiosSecure.post("/volunteer-request", volunteerReq).then((res) => {
+      if (res.data.acknowledged) {
+        Swal.fire({
+          icon: "success",
+          title: "Request Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/manage-my-post");
+      }
+    });
   };
   return (
     <>

@@ -6,13 +6,13 @@ import axios from "axios";
 import CardFormat from "../../Components/Card Format/CardFormat";
 import TableFormat from "../../Components/Table Format/TableFormat";
 
-
 const AllVolunteerNeedPost = () => {
   const [volunteerNeedPost, setVolunteerNeedPost] = useState([]);
   const [tableFormat, setTableFormat] = useState(false);
   const [search, setSearch] = useState("");
   useEffect(() => {
-    axios.get(`http://localhost:5000/all-volunteer-need-post?search=${search}`)
+    axios
+      .get(`http://localhost:5000/all-volunteer-need-post?search=${search}`)
       .then((res) => {
         setVolunteerNeedPost(res.data);
       });
@@ -23,9 +23,9 @@ const AllVolunteerNeedPost = () => {
         <title>All Volunteer Need Post</title>
       </Helmet>
       <div className="flex justify-between gap-5 items-center my-10">
-        <h1 className="text-xl lg:text-4xl text-accent font-semibold">
+        <div className="text-xl lg:text-4xl text-accent font-semibold">
           Volunteer Need Post ({volunteerNeedPost?.length})
-        </h1>
+        </div>
         <div>
           <label className="input input-bordered flex items-center gap-2">
             <input

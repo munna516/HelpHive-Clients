@@ -21,10 +21,11 @@ const useAxiosSecure = () => {
         if (error.status === 401 || error.status === 403) {
           userLogOut()
             .then((res) => {
+              toast.error(error?.response?.data?.message);
               navigate("/login");
             })
             .catch((err) => {
-              toast.error(error.message);
+              toast.error(err.message);
             });
         }
         return Promise.reject(error);

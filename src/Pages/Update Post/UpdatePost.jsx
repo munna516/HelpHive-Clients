@@ -49,7 +49,7 @@ const UpdatePost = () => {
       </Helmet>
       <div className="bg-base-300 my-10 p-6 md:p-20 rounded-lg">
         <h1 className="text-3xl lg:text-4xl text-accent font-bold text-center mb-5">
-          Update Heer Your Volunteer Need Post
+          Update Here Your Volunteer Need Post
         </h1>
         <p className="text-gray-500 text-center lg:w-9/12 mx-auto mb-5">
           This enables you to share opportunities for volunteer support. Fill

@@ -95,7 +95,7 @@ const ManageMyPost = () => {
       <Helmet>
         <title>Manage My Post</title>
       </Helmet>
-      <div role="tablist" className="tabs tabs-lifted  my-8">
+      <div role="tablist" className="tabs tabs-lifted my-8">
         <input
           type="radio"
           name="my_tabs_2"
@@ -104,7 +104,7 @@ const ManageMyPost = () => {
           className={`tab lg:text-2xl font-semibold  ${
             toogle ? "text-accent" : "text-gray-600"
           }`}
-          aria-label="My Volunteer Need Posts"
+          aria-label="My Posts"
           defaultChecked
         />
         <div
@@ -167,7 +167,7 @@ const ManageMyPost = () => {
           className={`tab lg:text-2xl font-semibold  ${
             toogle ? "text-gray-600" : "text-accent"
           }`}
-          aria-label="My Volunteering Request"
+          aria-label="My Request"
         />
         <div
           role="tabpanel"

@@ -59,7 +59,6 @@ const AuthProvider = ({ children }) => {
             { withCredentials: true }
           )
           .then((res) => {
-            console.log(res.data)
             setLoading(false);
           });
       } else {
@@ -70,7 +69,6 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
           });
       }
-      
     });
     return () => {
       unsubscribe();
