@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../../Components/Banner/Banner";
 import { Helmet } from "react-helmet";
 import VolunteerNeedsNow from "../../Components/Volunteer Needs Now/VolunteerNeedsNow";
+import Event from "../../Components/Upcoming Event/Event";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <div className="my-0">
         <Banner></Banner>
         <VolunteerNeedsNow></VolunteerNeedsNow>
+        <Event></Event>
       </div>
     </>
   );

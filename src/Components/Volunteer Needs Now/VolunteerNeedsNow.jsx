@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "../Card Format/Card";
 import { FaArrowRight } from "react-icons/fa";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Typewriter } from "react-simple-typewriter";
 
 const VolunteerNeedsNow = () => {
   const navigate = useNavigate();
@@ -16,7 +17,15 @@ const VolunteerNeedsNow = () => {
     <>
       <div>
         <h1 className="text-4xl font-bold text-center text-accent my-10">
-          Volunteer Needs Now
+          <Typewriter
+            words={["Volunteer Needs Now"]}
+            loop={50}
+            cursor
+            cursorStyle="_"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-5">
