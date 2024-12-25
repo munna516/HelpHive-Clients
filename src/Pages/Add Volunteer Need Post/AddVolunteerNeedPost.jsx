@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { format } from "date-fns";
 
 const AddVolunteerNeedPost = () => {
   const axiosSecure = useAxiosSecure();
@@ -22,7 +23,7 @@ const AddVolunteerNeedPost = () => {
     const location = form.location.value;
     const category = form.Category.value;
     const numberOfVolunteer = parseInt(form.volunteerNum.value);
-    const deadline = startDate;
+    const deadline = format(new Date(startDate), "P");
     const description = form.description.value;
     const organizer = {
       email: organizerEmail,
@@ -39,19 +40,17 @@ const AddVolunteerNeedPost = () => {
       deadline,
       description,
     };
-    axiosSecure
-      .post("/volunteer-need-post", volunteerNeedPost)
-      .then((res) => {
-        if (res.data.acknowledged) {
-          Swal.fire({
-            icon: "success",
-            title: "Post Added",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/manage-my-post");
-        }
-      });
+    axiosSecure.post("/volunteer-need-post", volunteerNeedPost).then((res) => {
+      if (res.data.acknowledged) {
+        Swal.fire({
+          icon: "success",
+          title: "Post Added",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/manage-my-post");
+      }
+    });
   };
   return (
     <>

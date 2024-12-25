@@ -31,7 +31,7 @@ const Event = () => {
       });
   };
   return (
-    <div className="container mx-auto my-10">
+    <div className=" my-10">
       <h2 className="text-4xl font-bold text-center mb-8 text-accent">
         <Typewriter
           words={["Upcoming Events"]}
@@ -52,7 +52,7 @@ const Event = () => {
             <div className="card-body">
               <figure>
                 <img
-                  className="rounded-lg w-full h-[200px] object-cover"
+                  className="rounded-lg w-full h-[300px] object-cover"
                   src={event.image}
                   alt="Shoes"
                 />

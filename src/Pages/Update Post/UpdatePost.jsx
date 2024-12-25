@@ -12,21 +12,20 @@ const UpdatePost = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   useEffect(() => {
-    axiosSecure
-      .get(`/volunteer-post/${id}`)
-      .then((res) => setPost(res.data));
+    axiosSecure.get(`/volunteer-post/${id}`).then((res) => setPost(res.data));
   }, []);
   const [post, setPost] = useState({});
   const { id } = useParams();
-  const [startDate, setStartDate] = useState();
+  const [startDate, setStartDate] = useState(new Date());
   const handleUpdate = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
     const { email, name, numberOfVolunteer, ...updatePost } = initialData;
-    updatePost.deadline = post?.deadline;
     updatePost.numberOfVolunteer = parseInt(numberOfVolunteer);
+    updatePost.deadline = startDate;
     updatePost.organizer = { email, name };
+    console.log(updatePost);
     axiosSecure
       .put(`/update-post/${id}`, updatePost)
       .then((res) => {
@@ -57,7 +56,7 @@ const UpdatePost = () => {
           willing contributors
         </p>
         <form onSubmit={handleUpdate}>
-          {/* First Row Name and email */}
+          {/*  Name and email */}
           <div className=" md:flex gap-5 space-y-5 md:space-y-0 mb-8">
             <div className="w-full">
               <label className="form-control w-full">
@@ -95,7 +94,7 @@ const UpdatePost = () => {
             </div>
           </div>
 
-          {/* Second Row Thumbnail and Post Title */}
+          {/*  Thumbnail and Post Title */}
           <div className="md:flex gap-5 space-y-5 md:space-y-0 mb-8">
             <div className="w-full">
               <label className="form-control w-full">
@@ -129,7 +128,7 @@ const UpdatePost = () => {
             </div>
           </div>
 
-          {/* Third Row Location and Category */}
+          {/*  Location and Category */}
           <div className=" md:flex gap-5 space-y-5 md:space-y-0 mb-8">
             <div className="w-full ">
               <label className="form-control w-full">
@@ -172,7 +171,7 @@ const UpdatePost = () => {
             </div>
           </div>
 
-          {/* Fourth Row Number of volunteer and Deadline */}
+          {/*  Number of volunteer and Deadline */}
           <div className=" md:flex gap-5 space-y-5 md:space-y-0 mb-8">
             <div className="w-full ">
               <label className="form-control w-full">
@@ -199,11 +198,10 @@ const UpdatePost = () => {
                     <span className="label-text font-semibold">Deadline</span>
                   </div>
                   <DatePicker
+                    value={startDate}
+                    selected={startDate}
                     placeholderText="pick a date"
                     className="w-full rounded-lg p-2 h-12 outline-none border focus:border-gray-400"
-                    selected={
-                      startDate || format(new Date(post?.deadline), "P")
-                    }
                     onChange={(date) => setStartDate(date)}
                   />
                 </label>
@@ -211,7 +209,7 @@ const UpdatePost = () => {
             </div>
           </div>
 
-          {/* Fifth Row Description */}
+          {/*  Description */}
           <div className=" md:flex gap-5 mb-8">
             <div className="w-full">
               <label className="form-control w-full">

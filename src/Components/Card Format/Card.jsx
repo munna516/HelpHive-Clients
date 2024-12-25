@@ -14,7 +14,7 @@ const Card = ({ post }) => {
         <figure className="p-3">
           <img
             src={thumbnail}
-            className="rounded-lg w-full h-[250px] object-cover"
+            className="rounded-lg w-full h-[300px] object-cover"
             alt={title}
           />
         </figure>
