@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import NoData from "../../Components/No Data/NoData";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { motion } from "motion/react";
+import Space from "../../Components/Space/Space";
 
 const ManageMyPost = () => {
   const { user } = useAuth();
@@ -89,7 +90,7 @@ const ManageMyPost = () => {
       <Helmet>
         <title>Manage My Post</title>
       </Helmet>
-      <div role="tablist" className="tabs tabs-lifted my-8">
+      <div role="tablist" className="tabs tabs-lifted mt-32 ">
         <input
           type="radio"
           name="my_tabs_2"
@@ -220,6 +221,7 @@ const ManageMyPost = () => {
           )}
         </div>
       </div>
+      <Space></Space>
     </>
   );
 };

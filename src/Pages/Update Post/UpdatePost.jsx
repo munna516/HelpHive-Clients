@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Space from "../../Components/Space/Space";
 
 const UpdatePost = () => {
   const axiosSecure = useAxiosSecure();
@@ -26,27 +27,25 @@ const UpdatePost = () => {
     updatePost.deadline = startDate;
     updatePost.organizer = { email, name };
     console.log(updatePost);
-    axiosSecure
-      .put(`/update-post/${id}`, updatePost)
-      .then((res) => {
-        if (res.data.acknowledged) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Your Post id Updated",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate(-1);
-        }
-      });
+    axiosSecure.put(`/update-post/${id}`, updatePost).then((res) => {
+      if (res.data.acknowledged) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your Post id Updated",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(-1);
+      }
+    });
   };
   return (
     <>
       <Helmet>
         <title>Update Volunteer Need Post</title>
       </Helmet>
-      <div className="bg-base-300 my-10 p-6 md:p-20 rounded-lg">
+      <div className="bg-base-300 mt-32 p-6 md:p-20 rounded-lg">
         <h1 className="text-3xl lg:text-4xl text-accent font-bold text-center mb-5">
           Update Here Your Volunteer Need Post
         </h1>
@@ -236,6 +235,7 @@ const UpdatePost = () => {
           />
         </form>
       </div>
+      <Space></Space>
     </>
   );
 };

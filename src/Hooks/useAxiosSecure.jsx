@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const axiosInstance = axios.create({
-  baseURL: "https://server-pi-drab.vercel.app",
+  baseURL: `${import.meta.env.VITE_API}`,
   withCredentials: true,
 });
 

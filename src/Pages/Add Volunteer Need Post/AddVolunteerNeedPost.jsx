@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { format } from "date-fns";
+import Space from "../../Components/Space/Space";
 
 const AddVolunteerNeedPost = () => {
   const axiosSecure = useAxiosSecure();
@@ -58,7 +59,7 @@ const AddVolunteerNeedPost = () => {
         <title>Add Volunteer Need Post</title>
       </Helmet>
 
-      <div className="bg-base-300 my-10 p-6 md:p-20 rounded-lg">
+      <div className="bg-base-300 mt-32  p-6 md:p-20 rounded-lg">
         <h1 className="text-3xl lg:text-4xl text-accent font-bold text-center mb-5">
           Add a Volunteer Need Post
         </h1>
@@ -237,6 +238,7 @@ const AddVolunteerNeedPost = () => {
           />
         </form>
       </div>
+      <Space></Space>
     </>
   );
 };

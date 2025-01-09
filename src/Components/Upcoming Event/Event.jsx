@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
+import Space from "../Space/Space";
 
 const Event = () => {
   const { user } = useAuth();
@@ -12,7 +13,7 @@ const Event = () => {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get("https://server-pi-drab.vercel.app/upcoming-event")
+      .get(`${import.meta.env.VITE_API}/upcoming-event`)
       .then((res) => setEvents(res.data));
   }, []);
   const handleRegister = (id) => {
@@ -21,7 +22,7 @@ const Event = () => {
       eventId: id,
     };
     axios
-      .post("https://server-pi-drab.vercel.app/event-registration", registerEvent)
+      .post(`${import.meta.env.VITE_API}/event-registration`, registerEvent)
       .then((res) => {
         // console.log(res.data);
         if (res?.data?.acknowledged) {
@@ -33,8 +34,8 @@ const Event = () => {
       });
   };
   return (
-    <div className=" my-10">
-      <h2 className="text-xl lg:text-4xl font-bold text-center mb-8 text-accent">
+    <div className=" ">
+      <h2 className="text-xl lg:text-4xl font-bold text-center text-accent">
         <Typewriter
           words={["Upcoming Events"]}
           loop={50}
@@ -45,6 +46,7 @@ const Event = () => {
           delaySpeed={1000}
         />
       </h2>
+      <Space></Space>
       <motion.div
         initial={{ opacity: 0, y: 200 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +72,7 @@ const Event = () => {
               </h3>
               <p className="text-sm text-gray-500">{event.date}</p>
               <p className="text-sm text-gray-500">{event.location}</p>
-              <p className="mt-2 text-gray-700">{event.description}</p>
+              <p className="mt-2 text-gray-400">{event.description}</p>
               <div className="card-actions mt-4">
                 {user && user?.email ? (
                   <button

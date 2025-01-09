@@ -10,16 +10,16 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
-import slider1 from "../../assets/Image/slider1.jpg";
-import slider2 from "../../assets/Image/slider2.jpg";
 import slider3 from "../../assets/Image/slider3.jpg";
+import slider4 from "../../assets/Image/Slider4.jpg";
+import slider5 from "../../assets/Image/Slider5.jpg";
 const Banner = () => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 2 }}
-      className="container px-6 py-10 mx-auto"
+      className="mt-36"
     >
       <Swiper
         spaceBetween={30}
@@ -44,13 +44,13 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Slide
-            image={slider2}
+            image={slider5}
             text="Unite for a Purpose Together We Can Make a Difference. Discover Opportunities to Give Back and  Through Compassionate Action!"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
-            image={slider1}
+            image={slider4}
             text="Your Time Their Hope Volunteer Today and Be a Part of Transformative Impact. Together We Create Brighter Tomorrows!"
           />
         </SwiperSlide>

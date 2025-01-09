@@ -41,8 +41,8 @@ const Navbar = () => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `btn md:text-xl font-bold items-center ${
-            isActive ? "btn btn-accent text-white" : ""
+          `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
+            isActive ? "text-black " : ""
           }`
         }
       >
@@ -51,17 +51,42 @@ const Navbar = () => {
       <NavLink
         to="/all-volunteer-need-post"
         className={({ isActive }) =>
-          `btn md:text-xl font-bold items-center ${
-            isActive ? "btn btn-accent text-white" : ""
+          `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
+            isActive ? "text-black" : ""
           }`
         }
       >
-        <a>All Volunteer Need Posts</a>
+        <a>All Need Posts</a>
       </NavLink>
+      {user && (
+        <>
+          <NavLink
+            to="/add-volunteer-need-post"
+            className={({ isActive }) =>
+              `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
+                isActive ? "text-black" : ""
+              }`
+            }
+          >
+            Add Need Post
+          </NavLink>
+
+          <NavLink
+            to="/manage-my-post"
+            className={({ isActive }) =>
+              `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
+                isActive ? "text-black" : ""
+              }`
+            }
+          >
+            Manage My Post
+          </NavLink>
+        </>
+      )}
     </>
   );
   return (
-    <div className=" navbar bg-base-100">
+    <div className=" navbar w-11/12 mx-auto h-24 p-0">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className=" btn btn-ghost lg:hidden">
@@ -82,12 +107,15 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 gap-3 z-10 rounded-box mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-accent gap-3 z-10 rounded-box mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
         </div>
-        <Link to="/" className="text-xl md:text-5xl font-extrabold text-accent">
+        <Link
+          to="/"
+          className="text-xl md:text-4xl  font-extrabold "
+        >
           HelpHive
         </Link>
       </div>
@@ -101,7 +129,7 @@ const Navbar = () => {
           <div className="flex justify-center items-center z-10 gap-3">
             {/* image  */}
             <div className="dropdown dropdown-end dropdown-hover">
-              <div tabIndex={0} className="border border-accent rounded-full ">
+              <div tabIndex={0} className="border-2 border-white rounded-full ">
                 <img
                   className="w-14 rounded-full p-1"
                   src={user?.photoURL}
@@ -110,17 +138,17 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
+                className="dropdown-content menu bg-accent rounded-box z-[1] w-60 p-2 shadow"
               >
                 <li>
-                  <a className="flex justify-center font-semibold">
+                  <a className="flex justify-center md:text-lg font-semibold">
                     {user?.displayName}
                   </a>
                 </li>
                 <li>
                   <a
                     onClick={handleLogOut}
-                    className="flex justify-center gap-2 font-semibold"
+                    className="flex justify-center md:text-lg gap-2 font-semibold"
                   >
                     Logout <FiLogOut />
                   </a>
@@ -128,30 +156,6 @@ const Navbar = () => {
               </ul>
             </div>
             {/* My Profile */}
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-accent text-white md:text-xl m-1"
-              >
-                My Profile
-              </div>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu flex items-center bg-base-100 rounded-box z-[1] w-60 p-2 shadow"
-              >
-                <li>
-                  <Link to="/add-volunteer-need-post" className="font-semibold">
-                    Add Volunteer Need Post
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/manage-my-post" className="font-semibold">
-                    Manage My Post
-                  </Link>
-                </li>
-              </ul>
-            </div>
           </div>
         ) : (
           <NavLink

@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser);
         axios
           .post(
-            "https://server-pi-drab.vercel.app/jwt",
+            `${import.meta.env.VITE_API}/jwt`,
             {
               email: currentUser?.email,
             },
@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
       } else {
         setUser(currentUser);
         axios
-          .post("https://server-pi-drab.vercel.app/logout", {}, { withCredentials: true })
+          .post(`${import.meta.env.VITE_API}/logout`, {}, { withCredentials: true })
           .then((res) => {
             setLoading(false);
           });

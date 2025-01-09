@@ -13,7 +13,7 @@ const AllVolunteerNeedPost = () => {
   const [search, setSearch] = useState("");
   useEffect(() => {
     axios
-      .get(`https://server-pi-drab.vercel.app/all-volunteer-need-post?search=${search}`)
+      .get(`${import.meta.env.VITE_API}/all-volunteer-need-post?search=${search}`)
       .then((res) => {
         setVolunteerNeedPost(res.data);
       });
@@ -23,7 +23,7 @@ const AllVolunteerNeedPost = () => {
       <Helmet>
         <title>All Volunteer Need Post</title>
       </Helmet>
-      <div className="flex justify-between gap-5 items-center my-10">
+      <div className="flex justify-between gap-5 items-center mt-32">
         <div className="text-xl lg:text-4xl text-accent font-semibold">
           Volunteer Need Post ({volunteerNeedPost?.length})
         </div>

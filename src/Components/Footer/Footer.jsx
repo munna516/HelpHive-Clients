@@ -1,20 +1,20 @@
 const Footer = () => {
   return (
     <>
-      <footer className="footer footer-center bg-base-300 text-base-content rounded p-10">
-        <h1 className="text-4xl font-extrabold text-accent">HelpHive</h1>
+      <footer className="footer footer-center bg-accent text-base-content rounded p-10">
+        <h1 className="text-4xl font-extrabold text-white">HelpHive</h1>
         <nav className="grid grid-flow-col gap-4 text-lg">
           <a
             href="https://www.linkedin.com/in/mehedi--hasan-munna/"
             target="_blank"
-            className="link link-hover hover:text-accent"
+            className="link link-hover text-white"
           >
             About us
           </a>
           <a
             href="https://www.linkedin.com/in/mehedi--hasan-munna/"
             target="_blank"
-            className="link link-hover hover:text-accent"
+            className="link link-hover text-white"
           >
             Contact
           </a>
@@ -22,8 +22,8 @@ const Footer = () => {
         <nav>
           <div className="grid grid-flow-col gap-4 text-lg">
             <a
-              href="https://x.com/munna_516"
-              className="hover:text-accent"
+              // href="https://x.com/munna_516"
+              className="text-white"
               target="_blank"
             >
               <svg
@@ -37,8 +37,8 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              href="https://www.youtube.com/"
-              className="hover:text-accent"
+              // href="https://www.youtube.com/"
+              className="text-white"
               target="_blank"
             >
               <svg
@@ -52,9 +52,9 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              href="https://www.facebook.com/mehedi.hasan.munna.5161/"
+              // href="https://www.facebook.com/mehedi.hasan.munna.5161/"
               target="_blank"
-              className="hover:text-accent"
+              className="text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ const Footer = () => {
           </div>
         </nav>
         <aside>
-          <p>
+          <p className="text-white text-lg">
             Copyright © {new Date().getFullYear()} - All right reserved by
             HelpHive
           </p>

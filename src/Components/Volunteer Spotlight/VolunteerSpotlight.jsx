@@ -3,18 +3,19 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "motion/react";
+import Space from "../Space/Space";
 
 const VolunteerSpotlight = () => {
   const navigate = useNavigate();
   const [volunteers, setVolunteers] = useState([]);
   useEffect(() => {
-    axios.get("https://server-pi-drab.vercel.app/volunteer-of-week").then((res) => {
+    axios.get(`${import.meta.env.VITE_API}/volunteer-of-week`).then((res) => {
       setVolunteers(res.data);
     });
   }, []);
   return (
-    <div className="mt-20 my-10">
-      <h2 className="text-xl lg:text-4xl font-bold text-center text-accent mb-10">
+    <div className="">
+      <h2 className="text-xl lg:text-4xl font-bold text-center text-accent ">
         <Typewriter
           words={["Volunteer Spotlights: Celebrating Changemakers"]}
           loop={50}
@@ -25,6 +26,7 @@ const VolunteerSpotlight = () => {
           delaySpeed={1000}
         />
       </h2>
+      <Space></Space>
       <motion.div
         initial={{ opacity: 0, y: 200 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -56,8 +58,8 @@ const VolunteerSpotlight = () => {
           </div>
         ))}
       </motion.div>
-      <div className="text-center mt-3">
-        <p className="text-lg font-medium">Want to be featured here?</p>
+      <div className="text-center mt-8">
+        <p className="text-lg text-gray-500 font-medium">Want to be featured here?</p>
         <button
           onClick={() => navigate("/all-volunteer-need-post")}
           className="btn btn-accent text-white text-lg mt-3"
