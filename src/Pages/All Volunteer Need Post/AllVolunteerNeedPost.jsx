@@ -6,29 +6,47 @@ import axios from "axios";
 import CardFormat from "../../Components/Card Format/CardFormat";
 import TableFormat from "../../Components/Table Format/TableFormat";
 
-
 const AllVolunteerNeedPost = () => {
   const [volunteerNeedPost, setVolunteerNeedPost] = useState([]);
   const [tableFormat, setTableFormat] = useState(false);
   const [search, setSearch] = useState("");
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API}/all-volunteer-need-post?search=${search}`)
+      .get(
+        `${import.meta.env.VITE_API}/all-volunteer-need-post?search=${search}`
+      )
       .then((res) => {
         setVolunteerNeedPost(res.data);
       });
   }, [search]);
+  const handleSort = (value) => {
+    if (value === "Number") {
+      console.log(value);
+      axios
+        .get(`${import.meta.env.VITE_API}/sort-by?sort=${value}`)
+        .then((res) => {
+          setVolunteerNeedPost(res.data);
+        });
+    } else {
+      console.log(value);
+      axios
+        .get(`${import.meta.env.VITE_API}/sort-by?sort=${value}`)
+        .then((res) => {
+          setVolunteerNeedPost(res.data);
+        });
+    }
+  };
   return (
     <>
       <Helmet>
         <title>All Volunteer Need Post</title>
       </Helmet>
       <div className="md:flex items-center justify-between gap-5 space-y-5 md:space-y-0 mt-32">
-        <div className="text-xl md:text-2xl lg:text-4xl text-accent text-center  font-semibold">
+        <div className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-accent text-center  font-semibold">
           Volunteer Need Post ({volunteerNeedPost?.length})
         </div>
-        <div className="flex justify-center">
-          <label className="input input-bordered flex items-center w-1/2 md:w-full gap-2">
+        <div className="flex justify-center gap-2 items-center">
+          <label className="input input-accent border-accent flex items-center w-1/2 md:w-full gap-2">
             <input
               onChange={(e) => setSearch(e.target.value)}
               type="text"
@@ -50,6 +68,16 @@ const AllVolunteerNeedPost = () => {
               />
             </svg>
           </label>
+          <select
+            onChange={(e) => handleSort(e.target.value)}
+            className="select select-accent w-full "
+          >
+            <option className="text-gray-400" disabled selected>
+              Sort By
+            </option>
+            <option>Number</option>
+            <option>Deadline</option>
+          </select>
         </div>
         <div className="flex justify-center items-center gap-5 text-3xl ">
           <p
