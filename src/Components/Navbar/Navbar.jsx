@@ -58,16 +58,6 @@ const Navbar = () => {
       >
         <a>All Need Posts</a>
       </NavLink>
-
-      <NavLink
-        to="/contact"
-        className={({ isActive }) =>
-          `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
-            isActive ? "text-black " : ""
-          }`
-        }
-      >
-        <a>Contact</a>  </NavLink>
       {user && (
         <>
           <NavLink
@@ -93,6 +83,16 @@ const Navbar = () => {
           </NavLink>
         </>
       )}
+      <NavLink
+        to="/contact"
+        className={({ isActive }) =>
+          `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
+            isActive ? "text-black " : ""
+          }`
+        }
+      >
+        <a>Contact</a>{" "}
+      </NavLink>
     </>
   );
   return (
@@ -122,10 +122,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <Link
-          to="/"
-          className="text-xl md:text-4xl  font-extrabold "
-        >
+        <Link to="/" className="text-xl md:text-4xl  font-extrabold ">
           HelpHive
         </Link>
       </div>
@@ -169,11 +166,11 @@ const Navbar = () => {
           </div>
         ) : (
           <NavLink
-          className={({ isActive }) =>
-            `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
-              isActive ? "text-black " : ""
-            }`
-          }
+            className={({ isActive }) =>
+              `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
+                isActive ? "text-black " : ""
+              }`
+            }
             to="/login"
           >
             <button>Login</button>
