@@ -58,6 +58,16 @@ const Navbar = () => {
       >
         <a>All Need Posts</a>
       </NavLink>
+
+      <NavLink
+        to="/contact"
+        className={({ isActive }) =>
+          `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
+            isActive ? "text-black " : ""
+          }`
+        }
+      >
+        <a>Contact</a>  </NavLink>
       {user && (
         <>
           <NavLink
@@ -131,7 +141,7 @@ const Navbar = () => {
             <div className="dropdown dropdown-end dropdown-hover">
               <div tabIndex={0} className="border-2 border-white rounded-full ">
                 <img
-                  className="w-14 rounded-full p-1"
+                  className="w-12 rounded-full p-1"
                   src={user?.photoURL}
                   alt=""
                 />
@@ -159,11 +169,11 @@ const Navbar = () => {
           </div>
         ) : (
           <NavLink
-            className={({ isActive }) =>
-              `btn md:text-xl font-bold items-center ${
-                isActive ? " btn-accent text-white" : ""
-              }`
-            }
+          className={({ isActive }) =>
+            `hover:border-b-2 hover:border-white rounded-sm p-1 lg:text-xl font-bold items-center ${
+              isActive ? "text-black " : ""
+            }`
+          }
             to="/login"
           >
             <button>Login</button>

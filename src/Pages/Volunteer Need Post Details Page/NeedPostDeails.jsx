@@ -10,6 +10,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { motion } from "motion/react";
+import Space from "../../Components/Space/Space";
 const NeedPostDeails = () => {
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -44,7 +45,7 @@ const NeedPostDeails = () => {
       </Helmet>
       <div>
         {title && (
-          <h1 className="text-2xl md:text-4xl font-bold text-accent text-center my-10">
+          <h1 className="text-2xl md:text-4xl font-bold text-accent text-center mt-32 mb-8">
             <Typewriter
               words={[title]}
               loop={50}
@@ -61,7 +62,7 @@ const NeedPostDeails = () => {
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2 }}
-          className="card card-compact bg-base-100 border-2 mb-10 w-11/12 mx-auto shadow-xl"
+          className="card card-compact bg-base-100 border-2  w-11/12 mx-auto shadow-xl"
         >
           <figure className="p-3">
             <img
@@ -132,6 +133,7 @@ const NeedPostDeails = () => {
             </div>
           </div>
         </motion.div>
+        <Space></Space>
       </div>
     </>
   );

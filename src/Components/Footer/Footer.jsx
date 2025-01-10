@@ -1,23 +1,17 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <>
       <footer className="footer footer-center bg-accent text-base-content rounded p-10">
         <h1 className="text-4xl font-extrabold text-white">HelpHive</h1>
         <nav className="grid grid-flow-col gap-4 text-lg">
-          <a
-            href="https://www.linkedin.com/in/mehedi--hasan-munna/"
-            target="_blank"
-            className="link link-hover text-white"
-          >
-            About us
-          </a>
-          <a
-            href="https://www.linkedin.com/in/mehedi--hasan-munna/"
-            target="_blank"
-            className="link link-hover text-white"
-          >
+          <Link to="/terms-condition" className="link link-hover text-white">
+            Terms & Condition
+          </Link>
+          <Link to="/contact" className="link link-hover text-white">
             Contact
-          </a>
+          </Link>
         </nav>
         <nav>
           <div className="grid grid-flow-col gap-4 text-lg">

@@ -12,6 +12,8 @@ import NeedPostDeails from "../Pages/Volunteer Need Post Details Page/NeedPostDe
 import VolunteerRequest from "../Pages/Volunteer Request/VolunteerRequest";
 import ManageMyPost from "../Pages/Manage My Post/ManageMyPost";
 import UpdatePost from "../Pages/Update Post/UpdatePost";
+import Contact from "../Pages/Contact/Contact";
+import TermsCondition from "../Pages/TermsConditon/TermsConditions";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "/terms-condition",
+        element: <TermsCondition></TermsCondition>,
       },
       {
         path: "/login",
@@ -37,11 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/volunteer-post/:id",
-        element: (
-          <PrivateRoute>
-            <NeedPostDeails></NeedPostDeails>
-          </PrivateRoute>
-        ),
+        element: <NeedPostDeails></NeedPostDeails>,
       },
       {
         path: "/volunteer-request/:id",

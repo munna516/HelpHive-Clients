@@ -1,49 +1,67 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import { BiSolidCategory } from "react-icons/bi";
+import { HiCalendarDateRange } from "react-icons/hi2";
+import { RiAccountCircle2Line } from "react-icons/ri";
 
 const Card = ({ post }) => {
-  const { _id, thumbnail, title, description, deadline, category,numberOfVolunteer } = post;
+  const {
+    _id,
+    thumbnail,
+    title,
+    description,
+    deadline,
+    category,
+    numberOfVolunteer,
+  } = post;
   return (
     <>
       <div
-       initial={{ opacity: 0, translateX: "100%" }}
-       whileInView={{ opacity: 1, translateX: 0 }}
-       transition={{ duration: 2 }}
+        initial={{ opacity: 0, translateX: "100%" }}
+        whileInView={{ opacity: 1, translateX: 0 }}
+        transition={{ duration: 2 }}
         className="card card-compact bg-base-100 border shadow-xl transition hover:scale-105
        overflow-hidden"
       >
         <figure className="p-3">
           <img
             src={thumbnail}
-            className="rounded-lg w-full h-[300px] object-cover"
+            className="rounded-lg w-full h-[180px] object-cover"
             alt={title}
           />
         </figure>
         <div className="card-body ">
           <h2 className="card-title  font-bold">{title}</h2>
-          <p className="text-gray-400">{description.slice(0, 100)} . . .</p>
-          <div className="flex justify-between text-lg ">
-            <div>
-              Category :{" "}
+          <p className="text-gray-400">{description.slice(0, 90)} . . .</p>
+          <div className="flex justify-between  items-center text-lg ">
+            <div className="flex items-center gap-2">
+              <span className="text-gray-400">
+                <BiSolidCategory />
+              </span>{" "}
               <span className="text-accent font-semibold">{category}</span>
             </div>
-            <div>
-              Deadline :{" "}
+            <div className="flex items-center gap-2">
+              <span className="text-gray-400">
+                <RiAccountCircle2Line />
+              </span>{" "}
+              <span className="text-accent font-semibold">
+                {numberOfVolunteer} People
+              </span>
+            </div>
+          </div>
+          <div className="flex justify-start items-center text-lg ">
+            <div className="flex items-center gap-2">
+              <span className="text-gray-400">
+                <HiCalendarDateRange />
+              </span>
               <span className="text-accent font-semibold">
                 {format(new Date(deadline), "P")}
               </span>
             </div>
           </div>
-          <div className="flex justify-center items-center text-lg mt-2">
-            <div>
-              Number of Volunteer :{" "}
-              <span className="text-accent font-semibold">
-                {numberOfVolunteer}
-              </span>
-            </div>
-          </div>
-          <div className="card-actions justify-end mt-5">
+          <div className="flex justify-center items-center text-lg mt-3"></div>
+          <div className="card-actions justify-center ">
             <Link to={`/volunteer-post/${_id}`}>
               <button className="btn btn-accent text-white">
                 View Details

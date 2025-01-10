@@ -23,12 +23,12 @@ const AllVolunteerNeedPost = () => {
       <Helmet>
         <title>All Volunteer Need Post</title>
       </Helmet>
-      <div className="flex justify-between gap-5 items-center mt-32">
-        <div className="text-xl lg:text-4xl text-accent font-semibold">
+      <div className="md:flex items-center justify-between gap-5 space-y-5 md:space-y-0 mt-32">
+        <div className="text-xl md:text-2xl lg:text-4xl text-accent text-center  font-semibold">
           Volunteer Need Post ({volunteerNeedPost?.length})
         </div>
-        <div>
-          <label className="input input-bordered flex items-center gap-2">
+        <div className="flex justify-center">
+          <label className="input input-bordered flex items-center w-1/2 md:w-full gap-2">
             <input
               onChange={(e) => setSearch(e.target.value)}
               type="text"
