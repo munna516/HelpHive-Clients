@@ -56,7 +56,7 @@ const Navbar = () => {
           }`
         }
       >
-        <a>All Need Posts</a>
+        <a>All Posts</a>
       </NavLink>
       {user && (
         <>
@@ -68,7 +68,7 @@ const Navbar = () => {
               }`
             }
           >
-            Add Need Post
+            Add Post
           </NavLink>
 
           <NavLink
@@ -127,7 +127,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 items-center gap-3">
+        <ul className="menu menu-horizontal px-1 items-center gap-8">
           {links}
         </ul>
       </div>
