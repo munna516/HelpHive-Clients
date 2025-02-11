@@ -32,38 +32,39 @@ const Card = ({ post }) => {
           />
         </figure>
         <div className="card-body ">
-          <h2 className="card-title  font-bold">{title}</h2>
-          <p className="text-gray-400">{description.slice(0, 90)} . . .</p>
+          <h2 className="card-title  font-bold text-accent">{title}</h2>
+          <p className="text-gray-400">{description.slice(0, 70)} . . .</p>
           <div className="flex justify-between  items-center text-lg ">
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <span className="text-gray-400">
                 <BiSolidCategory />
               </span>{" "}
               <span className="text-accent font-semibold">{category}</span>
+            </div> */}
+            <div className="flex justify-start items-center text-lg ">
+              <div className="flex items-center gap-2">
+                <span className="font-bold">
+                  <HiCalendarDateRange />
+                </span>
+                <span className="text-gray-500 font-semibold">
+                  {format(new Date(deadline), "P")}
+                </span>
+              </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-gray-400">
+              <span className="font-bold">
                 <RiAccountCircle2Line />
               </span>{" "}
-              <span className="text-accent font-semibold">
+              <span className="text-gray-500 font-semibold">
                 {numberOfVolunteer} People
               </span>
             </div>
           </div>
-          <div className="flex justify-start items-center text-lg ">
-            <div className="flex items-center gap-2">
-              <span className="text-gray-400">
-                <HiCalendarDateRange />
-              </span>
-              <span className="text-accent font-semibold">
-                {format(new Date(deadline), "P")}
-              </span>
-            </div>
-          </div>
+
           <div className="flex justify-center items-center text-lg mt-3"></div>
           <div className="card-actions justify-center ">
             <Link to={`/volunteer-post/${_id}`}>
-              <button className="btn btn-accent text-white">
+              <button className="text-base btn btn-outline btn-accent hover:!text-white ">
                 View Details
               </button>
             </Link>
