@@ -1,13 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
+import ErrorLottie from "../../assets/Lottie/ErrorLottie.json";
+import Lottie from "lottie-react";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
   return (
-    <section className="bg-white ">
-      <div className="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
-        <div className="wf-ull lg:w-1/2">
-          <p className="text-red-600 text-6xl font-bold">404</p>
-          <h1 className="mt-3 text-xl  text-red-600 font-bold  dark:text-white md:text-3xl">
+    <section className="bg-white">
+      <div className="min-h-screen md:flex items-center justify-center  p-10 space-y-10 md:space-y-0">
+        <div className="w-full md:w-1/2 mx-auto ">
+          <Lottie animationData={ErrorLottie}></Lottie>
+        </div>
+        <div className=" w-full md:w-1/2 mx-auto text-center">
+          <p className="text-accent text-6xl font-bold">404</p>
+          <h1 className="mt-3 text-xl  text-accent font-bold  dark:text-white md:text-3xl">
             Page not found
           </h1>
           <p className="mt-4 text-gray-500 dark:text-gray-400">
@@ -15,15 +20,15 @@ const ErrorPage = () => {
             :
           </p>
 
-          <div className="flex items-center mt-6 gap-x-3">
-            <button className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto hover:bg-gray-100 ">
+          <div className="flex items-center justify-center mt-6 gap-x-3">
+            <button className="btn btn-accent text-white ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-5 h-5 rtl:rotate-180"
+                className="w-5 h-5 rtl:rotate-180 text-white"
               >
                 <path
                   strokeLinecap="round"
@@ -32,24 +37,13 @@ const ErrorPage = () => {
                 />
               </svg>
 
-              <span onClick={()=>navigate(-1)}>Go back</span>
+              <span onClick={() => navigate(-1)}>Go back</span>
             </button>
 
-            <Link
-              to="/"
-              className="w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-gray-500 rounded-lg shrink-0 sm:w-auto hover:bg-gray-600"
-            >
+            <Link to="/" className="btn btn-accent text-white ">
               Take me home
             </Link>
           </div>
-        </div>
-
-        <div className="relative w-full mt-8 lg:w-1/2 lg:mt-0">
-          <img
-            className=" w-full lg:h-[32rem] h-80 md:h-96 rounded-lg object-cover "
-            src="https://i.ibb.co.com/hgSkjfM/error.webp"
-            alt=""
-          />
         </div>
       </div>
     </section>
