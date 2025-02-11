@@ -95,9 +95,9 @@ const NeedPostDeails = () => {
               </h1>
             </div>
             <div className="md:px-10  text-gray-400">
-              <p>{description}</p>
+              <p className="text-lg">{description}</p>
             </div>
-            <div className="text-center space-y-3 lg:space-y-0  lg:flex justify-between gap-3 items-center my-5 md:px-10">
+            <div className="text-center text-base space-y-3 lg:space-y-0  lg:flex justify-between gap-3 items-center my-5 md:px-10">
               <h1>
                 Organizer Name :{" "}
                 <span className="text-accent">{organizer?.name}</span>
