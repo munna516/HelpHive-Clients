@@ -1,7 +1,7 @@
 import React from "react";
 
 const Space = () => {
-  return <div className="mb-5 md:mb-7 lg:mb-10"></div>;
+  return <div className="mb-6 md:mb-8 lg:mb-12"></div>;
 };
 
 export default Space;
