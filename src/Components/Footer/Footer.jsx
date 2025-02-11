@@ -16,7 +16,7 @@ const Footer = () => {
         <nav>
           <div className="grid grid-flow-col gap-4 text-lg">
             <a
-              // href="https://x.com/munna_516"
+               href="https://x.com/munna_516"
               className="text-white"
               target="_blank"
             >
@@ -31,7 +31,7 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              // href="https://www.youtube.com/"
+               href="https://www.youtube.com/"
               className="text-white"
               target="_blank"
             >
@@ -46,7 +46,7 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              // href="https://www.facebook.com/mehedi.hasan.munna.5161/"
+             href="https://www.facebook.com/mehedi.hasan.munna.5161/"
               target="_blank"
               className="text-white"
             >
