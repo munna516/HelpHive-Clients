@@ -37,7 +37,7 @@ const VolunteerSpotlight = () => {
         {volunteers.map((volunteer, index) => (
           <div
             key={index}
-            className={`md:flex md:flex-row border-2 border-gray-200  rounded-xl shadow-xl items-center ${
+            className={`md:flex md:flex-row border-2 border-gray-200  rounded-lg shadow-xl items-center ${
               index % 2 === 0 ? "md:flex-row-reverse" : ""
             } gap-6`}
           >
